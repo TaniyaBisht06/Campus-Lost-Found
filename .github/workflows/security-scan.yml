@@ -1,0 +1,23 @@
+name: Security Incident Detection
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  secret-detection:
+    name: Scan for Exposed Secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks Security Scan
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_NOTIFY_USER_LIST: "@TaniyaBisht06"
