@@ -5,9 +5,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   secret-detection:
-    name: Scan for Exposed Secrets
+    name: Detect Hardcoded Credentials
     runs-on: ubuntu-latest
 
     steps:
@@ -16,8 +19,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Gitleaks Security Scan
-        uses: gitleaks/gitleaks-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_NOTIFY_USER_LIST: "@TaniyaBisht06"
+      - name: Install Gitleaks
+        run: |
+          docker pull ghcr.io/gitleaks/gitleaks:latest
+
+      - name: Scan Repository for Secrets
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            ghcr.io/gitleaks/gitleaks:latest \
+            dir /repo --redact --exit-code 1
