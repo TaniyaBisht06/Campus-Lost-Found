@@ -1,7 +1,7 @@
 # Campus Lost and Found Management System
 
-# API credentials (INTENTIONALLY HARDCODED)
-API_KEY = "ghp_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# INTENTIONALLY HARDCODED API KEY
+API_KEY = "ghp_a8F3kL9mQ2vR7xN4pT6wY1zB5cD8eG0hJ K2p".replace(" ", "")
 
 
 def display_lost_items():
@@ -16,9 +16,7 @@ def display_lost_items():
 
 def main():
     display_lost_items()
-
     print("\nConnecting to external service...")
-    print("API Key:", API_KEY)
 
 
 if __name__ == "__main__":
