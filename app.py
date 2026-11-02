@@ -1,7 +1,7 @@
 # Campus Lost and Found Management System
 
 # API credentials (INTENTIONALLY HARDCODED)
-API_KEY = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+API_KEY = "ghp_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def display_lost_items():
